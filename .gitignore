@@ -1,1 +1,4 @@
 .venv
+.DS_Store
+project/stl-10/*.bin
+project/stl-10/*.txt
