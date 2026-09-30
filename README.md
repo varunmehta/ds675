@@ -6,6 +6,12 @@ From the course website - [DS-675](https://web.njit.edu/~usman/courses/ds675/)
 > **Course Overview**
 > This course is a hands-on introduction to machine learning and contains both theory and application. We will cover linear and non-linear classification methods, image classification, neural network training, logistic regression, feature selection, clustering, dimensionality reduction, and decision trees and random forests. We will also implement methods in Python with scikit-learn and Keras and if time permits study kernel methods, Bayesian learning, and autoencoders.
 
+## Quick Start
+ * Python 3.13
+ * Jupyter Notebook server or IDE plugin.
+
+## Notebooks
+
 * [Linear Regression](/linear-regression/)
   * [Breast Cancer Data](/linear-regression/breast-cancer-training.ipynb)
   * [Optional Exercise 1](/linear-regression/optional_exercise_1.ipynb)
