@@ -7,21 +7,32 @@ From the course website - [DS-675](https://web.njit.edu/~usman/courses/ds675/)
 > This course is a hands-on introduction to machine learning and contains both theory and application. We will cover linear and non-linear classification methods, image classification, neural network training, logistic regression, feature selection, clustering, dimensionality reduction, and decision trees and random forests. We will also implement methods in Python with scikit-learn and Keras and if time permits study kernel methods, Bayesian learning, and autoencoders.
 
 ## Quick Start
- * Python 3.13
- * Jupyter Notebook server or IDE plugin.
+ * Install [Python](https://www.python.org/downloads/) 
+ * Install [VSCode](https://code.visualstudio.com/download) 
+ * Install [Jupyter Notebook Plugin](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter)
+ * Clone this repo
+ * Run Notebooks
+
+> For those who know, create a [`.venv`](https://docs.python.org/3/tutorial/venv.html) to manage dependencies. 
+> 
+> [Using `venv` with VSCode](https://code.visualstudio.com/docs/python/environments)
+
+If you are very new to python and package management with too many dependencies to install one-by-one is overwhelming, download [Anaconda](https://www.anaconda.com/download). It bundles Python with hundreds of pre-installed data science tools. The only downside is that you're downloading software that you might not need.
 
 ## Notebooks
 
-* [Linear Regression](/linear-regression/)
-  * [Breast Cancer Data](/linear-regression/breast-cancer-training.ipynb)
-  * [Optional Exercise 1](/linear-regression/optional_exercise_1.ipynb)
-  * [Optional Exercise 2](/linear-regression/optional_exercise_2.ipynb)
+> More will be added as the class proceeds!
+
+* [Linear Classifiers](/linear-classifiers/)
+  * [Breast Cancer Data](/linear-classifiers/breast-cancer-training.ipynb)
+  * [Optional Exercise 1](/linear-classifiers/optional_exercise_1.ipynb)
+  * [Optional Exercise 2](/linear-classifiers/optional_exercise_2.ipynb)
+* [Image Classification](/image-classification/) 
 * [Neural Networks](/neural-networks/nn.ipynb)
 
 ## Project
 This is my hands on project to learn comparison between SVM, Linear Models and Neural Networks. Do not plagiarize if you are attending this course!! 
   * [Project](/project/project-ds675.ipynb)
-
 
 ## Jupyter Notebooks
 > If you hit upon this repo in lieu to learn, this is just a scratch pad, check other notebooks out there. 
