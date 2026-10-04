@@ -43,3 +43,21 @@ Request a meeting to discuss meeting
 
 #### Presentation 
 Final Presentation is a Powerpoint Slide with results and code
+
+## High Level Approach 
+
+GitHub does not allow to render mermaid diagrams in python notebooks!
+
+```mermaid
+flowchart LR
+    Raw_Images[Raw Images] --> Extract[Extract Features]
+    Extract --> Train_SVM[Train for SVM]
+    Train_SVM --> Predict_SVM[Predict for SVM]
+    Extract --> Train_NN[Train for NN]
+    Train_NN --> Predict_NN[Predict for NN]    
+    Predict_SVM --> Validate_SVM[Validate]
+    Validate_SVM --> Report[Report Accuracy]
+    Predict_NN --> Validate_NN[Validate]
+    Validate_NN --> Report[Report Accuracy]
+```
+
