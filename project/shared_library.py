@@ -1,15 +1,21 @@
 import datetime, base64, io, os, errno, math
+import keras
 import numpy as np
 import pandas as pd
+
 import matplotlib.pyplot as plt
 
 from itertools import product
+
+from keras.layers import Dense, Dropout, Activation, Flatten
+from keras.layers import Conv2D, MaxPool2D, AveragePooling2D
+from keras.models import Sequential
 
 from PIL import Image
 
 from sklearn.svm import LinearSVC
 from sklearn.neural_network import MLPClassifier
-from sklearn.model_selection import cross_val_score, cross_validate
+from sklearn.model_selection import LearningCurveDisplay, cross_val_score
 
 from time import perf_counter
 
@@ -46,6 +52,18 @@ def read_labels(path_to_labels):
         return labels
 
 
+def load_all_images_raw(path_to_data, path_to_labels):
+    """
+    Load add images from path, and make it available as original 3 color channel images
+    """
+    labels = np.fromfile(path_to_labels, dtype=np.uint8)
+    images = np.memmap(
+        path_to_data, dtype=np.uint8, mode="r", shape=(len(labels), 3, 96, 96)
+    )
+    print("Image Shape: ", images.shape, images.dtype, images.min(), images.max())
+    return images, labels
+
+
 def load_all_images_flat(path_to_data, path_to_labels):
     """
     Load add images from path, and make it available as flatten images with features.
@@ -55,6 +73,7 @@ def load_all_images_flat(path_to_data, path_to_labels):
         path_to_data, dtype=np.uint8, mode="r", shape=(len(labels), 3, 96, 96)
     )
     images = raw.reshape(len(labels), -1).astype("float32") / 255.0  # scale to 0-1
+    print("Image Shape: ", images.shape, images.dtype, images.min(), images.max())
     return images, labels
 
 
