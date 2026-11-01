@@ -1,5 +1,7 @@
 # Final Project
 
+> Standard simple format: background and motivation of the problem (1 slide), one pager experimental setup (1 slide), code snippets (2 to 3 slides), results (2 to 3 slides). Presentations are about 10 mins per student
+
 ## Comparison of Linear SVM and Neural Network for Image Classification
 
 ### Models Compared - Linear SVM vs Neural Network

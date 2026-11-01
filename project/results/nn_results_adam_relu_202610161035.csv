@@ -1,0 +1,2 @@
+hidden_layer,max_iters,regularization,accuracy_score,execution_time
+100,100000,0.001,0.36325,7.524406916927546

@@ -7,17 +7,20 @@ import matplotlib.pyplot as plt
 
 from itertools import product
 
-from keras.layers import Dense, Dropout, Activation, Flatten
-from keras.layers import Conv2D, MaxPool2D, AveragePooling2D
-from keras.models import Sequential
 
 from PIL import Image
 
-from sklearn.svm import LinearSVC
+from sklearn.metrics import check_scoring
+from sklearn.model_selection import cross_val_score, cross_validate
 from sklearn.neural_network import MLPClassifier
-from sklearn.model_selection import LearningCurveDisplay, cross_val_score
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.svm import LinearSVC
+
+import tensorflow as tf
 
 from time import perf_counter
+
+from wurlitzer import pipes
 
 # image shape
 HEIGHT = 96
@@ -28,6 +31,19 @@ DEPTH = 3
 SIZE = HEIGHT * WIDTH * DEPTH
 
 SEED = 42
+
+CLASS_NAMES = [
+    "airplane",
+    "bird",
+    "car",
+    "cat",
+    "deer",
+    "dog",
+    "horse",
+    "monkey",
+    "ship",
+    "truck",
+]
 
 # 5000 images training dataset
 # path to the binary train file with image data
@@ -54,13 +70,27 @@ def read_labels(path_to_labels):
 
 def load_all_images_raw(path_to_data, path_to_labels):
     """
-    Load add images from path, and make it available as original 3 color channel images
+    Load STL-10 as Keras-ready images: (N, 96, 96, 3) uint8, upright,
+    with labels in 0..9.
     """
     labels = np.fromfile(path_to_labels, dtype=np.uint8)
-    images = np.memmap(
+
+    expected = len(labels) * 3 * 96 * 96
+    actual = os.path.getsize(path_to_data)
+    if actual != expected:
+        raise ValueError(f"{path_to_data}: {actual} bytes, expected {expected}")
+
+    raw = np.memmap(
         path_to_data, dtype=np.uint8, mode="r", shape=(len(labels), 3, 96, 96)
     )
+
+    # File layout is (N, C, x, y), column-major. Reorder to (N, y, x, C) = (N, H, W, C).
+    images = np.ascontiguousarray(raw.transpose(0, 3, 2, 1))
+
+    labels = labels.astype(np.int64) - 1  # 1..10 -> 0..9
+
     print("Image Shape: ", images.shape, images.dtype, images.min(), images.max())
+    print("Labels: ", labels.shape, labels.min(), labels.max())
     return images, labels
 
 
