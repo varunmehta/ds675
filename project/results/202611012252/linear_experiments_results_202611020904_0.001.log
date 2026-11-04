@@ -1,0 +1,19 @@
+iter  1 act 2.141e+00 pre 2.138e+00 delta 9.837e-03 f 4.000e+00 |g| 4.352e+02 CG   1
+cg reaches trust region boundary
+iter  2 act 1.401e-01 pre 1.380e-01 delta 1.749e-02 f 1.859e+00 |g| 1.982e+01 CG   1
+cg reaches trust region boundary
+iter  3 act 2.122e-01 pre 2.148e-01 delta 2.740e-02 f 1.719e+00 |g| 4.667e+01 CG   2
+cg reaches trust region boundary
+iter  4 act 1.223e-01 pre 1.089e-01 delta 3.332e-02 f 1.507e+00 |g| 1.133e+01 CG   3
+cg reaches trust region boundary
+iter  5 act 6.131e-02 pre 5.942e-02 delta 4.655e-02 f 1.385e+00 |g| 9.719e+00 CG   3
+cg reaches trust region boundary
+iter  6 act 6.959e-02 pre 6.902e-02 delta 6.999e-02 f 1.323e+00 |g| 5.507e+00 CG   4
+cg reaches trust region boundary
+iter  7 act 7.938e-02 pre 7.597e-02 delta 1.063e-01 f 1.254e+00 |g| 4.461e+00 CG   5
+cg reaches trust region boundary
+iter  8 act 8.317e-02 pre 8.594e-02 delta 1.320e-01 f 1.174e+00 |g| 4.038e+00 CG   6
+cg reaches trust region boundary
+iter  9 act 8.645e-02 pre 8.748e-02 delta 1.644e-01 f 1.091e+00 |g| 4.907e+00 CG   7
+cg reaches trust region boundary
+iter 10 act 6.082e-02 pre 5.856e-02 delta 1.809e-01 f 1.005e+00 |g| 4.758e+00 CG  10

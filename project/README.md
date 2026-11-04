@@ -1,6 +1,32 @@
 # Final Project
 
-> Standard simple format: background and motivation of the problem (1 slide), one pager experimental setup (1 slide), code snippets (2 to 3 slides), results (2 to 3 slides). Presentations are about 10 mins per student
+> Presentation format: 
+> * background and motivation of the problem (1 slide) 
+> * one pager experimental setup (1 slide)
+> * code snippets (2 to 3 slides) 
+> * results (2 to 3 slides). 
+> 
+> Presentations are about 10 mins per student
+
+## Quick Start
+
+### Python Libraries & Imports
+
+#### Create [`.venv`](https://docs.python.org/3/tutorial/venv.html)
+
+Create a virtual environment to install all the needed python libraries/dependencies
+
+```
+python -m venv .venv
+```
+
+#### Libraries
+
+Install [`scikit-learn`](https://scikit-learn.org/stable/), [`matplotlib`](https://matplotlib.org/), [`numpy`](https://numpy.org/) & [`pandas`](https://pandas.pydata.org/) to run the experiments.
+
+Pandas are primarily for rendering `DataFrame` responses in a nice tabular format on a notebook.
+
+> Update this section with libraries as needed, and the pip and imports below.
 
 ## Comparison of Linear SVM and Neural Network for Image Classification
 
@@ -121,5 +147,49 @@ The project is split into individual components, as running each file is going t
 ```
 The results are exported as CSV files under `results` folder. If I just keep them in `DataFrame` and the kernel dies, I lose my experiment results. 
 
-Still debating between `papermill` and manual execution.
+### Cross Validation
 
+[`cross_val_score`](https://scikit-learn.org/stable/modules/cross_validation.html#cross-validation-evaluating-estimator-performance) - Does 5 fold cross validation to find the best parameter for C
+
+$C$ is regularization, lower the $C$, stronger the regularization, so when adding $\Delta x$ to $w^T x$, the value of $w^T\Delta x$ should be moved a small amount.
+
+#### Using `cross_validate` instead of `cross_val_score`
+
+From an implementation point of view `cross_val_score` is a wrapper around `cross_validate`, I want to capture how many iterations it took before the model was trained. `cross_validate` exposes the `estimator` which allows me to capture training related observability.
+
+##### Internals of cross_val_score
+
+```python
+def cross_val_score(
+    estimator,
+    X,
+    y=None,
+    *,
+    groups=None,
+    scoring=None,
+    cv=None,
+    n_jobs=None,
+    verbose=0,
+    params=None,
+    pre_dispatch="2*n_jobs",
+    error_score=np.nan,
+):
+    """Evaluate a score by cross-validation.
+    scorer = check_scoring(estimator, scoring=scoring)
+
+    cv_results = cross_validate(
+        estimator=estimator,
+        X=X,
+        y=y,
+        groups=groups,
+        scoring={"score": scorer},
+        cv=cv,
+        n_jobs=n_jobs,
+        verbose=verbose,
+        params=params,
+        pre_dispatch=pre_dispatch,
+        error_score=error_score,
+    )
+    return cv_results["test_score"]
+
+```

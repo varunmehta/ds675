@@ -1,0 +1,5 @@
+iter  1 act 2.141e+01 pre 2.138e+01 delta 9.838e-03 f 4.000e+01 |g| 4.352e+03 CG   1
+cg reaches trust region boundary
+iter  2 act 1.402e+00 pre 1.380e+00 delta 1.750e-02 f 1.859e+01 |g| 1.982e+02 CG   1
+cg reaches trust region boundary
+iter  3 act 2.126e+00 pre 2.151e+00 delta 2.745e-02 f 1.719e+01 |g| 4.668e+02 CG   2

@@ -5,3 +5,4 @@ project/stl-10/*.txt
 
 __pycache__
 project/__pycache__
+out/
