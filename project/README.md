@@ -10,6 +10,17 @@
 
 ## Quick Start
 
+### Notebooks
+
+Each Classifier, runs in a notebook of its own, this allows the notebook to run in parallel.
+
+- [01 - Linear Support Vector machine (SVM) - `LinearSVC`](01-linear-svm.ipynb)
+- [02 - Neural Network (NN) - `MLPClassifier`](02-mlp-classifier.ipynb)
+- [03 - Custom Convolutional Neural Network (CNN) - `Keras`](03-custom-cnn.ipynb)
+- [04 - ResNet-50 Transfer Learning - `Keras`](04-resnet.ipynb)
+
+Results from all 4 notebooks are consolidated and displayed in [00 - Project DS-675](00-project-ds675.ipynb).
+
 ### Python Libraries & Imports
 
 #### Create [`.venv`](https://docs.python.org/3/tutorial/venv.html)
@@ -139,7 +150,8 @@ The project is split into individual components, as running each file is going t
 ├── 00-project-ds675.ipynb
 ├── 01-linear-svm.ipynb
 ├── 02-mlp-classifier.ipynb
-├── 03-cnn.ipynb
+├── 03-custom-cnn.ipynb
+├── 04-resnet.ipynb
 ├── shared_library.py            # loaders, paths, helpers (shared code)
 ├── stl-10-dataset-viewer.ipynb
 ├── stl-10/                      # train_X.bin, etc.
