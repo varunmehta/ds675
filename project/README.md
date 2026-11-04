@@ -14,6 +14,7 @@
 
 Each Classifier, runs in a notebook of its own, this allows the notebook to run in parallel.
 
+- [00 - Project DS-675](00-project-ds675.ipynb) - Overview and Results
 - [01 - Linear Support Vector machine (SVM) - `LinearSVC`](01-linear-svm.ipynb)
 - [02 - Neural Network (NN) - `MLPClassifier`](02-mlp-classifier.ipynb)
 - [03 - Custom Convolutional Neural Network (CNN) - `Keras`](03-custom-cnn.ipynb)
