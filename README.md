@@ -32,7 +32,7 @@ If you are very new to python and package management with too many dependencies 
 
 ## Project
 This is my hands on project to learn comparison between SVM, Linear Models and Neural Networks. Do not plagiarize if you are attending this course!! 
-  * [Project](/project/project-ds675.ipynb)
+  * [Project](/project)
 
 ## Jupyter Notebooks
 > If you hit upon this repo in lieu to learn, this is just a scratch pad, check other notebooks out there. 
