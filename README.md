@@ -31,8 +31,9 @@ If you are very new to python and package management with too many dependencies 
 * [Neural Networks](/neural-networks/nn.ipynb)
 
 ## Project
-This is my hands on project to learn comparison between SVM, Linear Models and Neural Networks. Do not plagiarize if you are attending this course!! 
+This is my hands on project comparing a Linear SVM, a Neural Network (`MLPClassifier`), a custom CNN and ResNet-50 transfer learning for image classification on STL-10. Do not plagiarize if you are attending this course!! 
   * [Project](/project)
+  * [Final Presentation (PDF)](/project/DS-675%20-%20Finals%20Presentation.pdf)
 
 ## Jupyter Notebooks
 > If you hit upon this repo in lieu to learn, this is just a scratch pad, check other notebooks out there. 
