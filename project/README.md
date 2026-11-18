@@ -10,7 +10,7 @@
 
 ## Final Presentation
 
-📄 [DS-675 - Finals Presentation (PDF)](DS-675%20-%20Finals%20Presentation.pdf) - background, experimental setup, code snippets and results for all four models.
+📄 [DS-675 - Finals Presentation (PDF)](DS-675-Finals_Presentation.pdf) - background, experimental setup, code snippets and results for all four models.
 
 ## Quick Start
 
