@@ -7,10 +7,10 @@ import matplotlib.pyplot as plt
 
 from itertools import product
 
-
 from PIL import Image
 
-from sklearn.metrics import check_scoring
+from sklearn.metrics import balanced_accuracy_score, check_scoring
+from sklearn.multiclass import OneVsRestClassifier
 from sklearn.model_selection import StratifiedKFold, cross_val_score, cross_validate
 from sklearn.neural_network import MLPClassifier
 from sklearn.preprocessing import OneHotEncoder
@@ -59,7 +59,7 @@ TEST_DATA_PATH = "./stl-10/test_X.bin"
 TEST_LABEL_PATH = "./stl-10/test_y.bin"
 
 RESULTS_PATH = "/results"
-
+RESULTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "results")
 
 def read_labels(path_to_labels):
     """
@@ -96,7 +96,7 @@ def load_all_images_raw(path_to_data, path_to_labels):
     return images, labels
 
 
-def load_all_images_flat(path_to_data, path_to_labels):
+def load_stl10_binary_as_flat(path_to_data, path_to_labels):
     """
     Load add images from path, and make it available as flatten images with features.
     """
@@ -107,30 +107,6 @@ def load_all_images_flat(path_to_data, path_to_labels):
     images = raw.reshape(len(labels), -1).astype("float32") / 255.0  # scale to 0-1
     print("Image Shape: ", images.shape, images.dtype, images.min(), images.max())
     return images, labels
-
-
-def num_2_text(label):
-    match label:
-        case 1:
-            return "airplane"
-        case 2:
-            return "bird"
-        case 3:
-            return "car"
-        case 4:
-            return "cat"
-        case 5:
-            return "deer"
-        case 6:
-            return "dog"
-        case 7:
-            return "horse"
-        case 8:
-            return "monkey"
-        case 9:
-            return "ship"
-        case 10:
-            return "truck"
 
 
 def yyyymmddhhmm():
@@ -161,8 +137,6 @@ def get_run_id(override=None):
             return f.read().strip()
 
 
-RESULTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "results")
-
 
 def results_dir(run_id, notebook):
     """results/{run_id}/{notebook}, created if missing. Every output of a notebook goes here."""
@@ -171,7 +145,7 @@ def results_dir(run_id, notebook):
     return path
 
 
-def load_stl10_binary(data_path, label_path=None):
+def load_stl10_binary_as_matrix(data_path, label_path=None):
     """Load STL-10 as Keras-ready images (N, 96, 96, 3) uint8, with labels 0..9."""
     # Read images (stored in column-major order)
     with open(data_path, "rb") as f:
@@ -191,7 +165,9 @@ def load_stl10_binary(data_path, label_path=None):
     return images
 
 
-def cross_validate_keras(build_fn, name, X_train, y_train, epochs, batch_size, run_id, output_dir, n_splits=5):
+def cross_validate_keras(
+    build_fn, name, X_train, y_train, epochs, batch_size, run_id, output_dir, n_splits=5
+):
     """Stratified cross-validation on the training images. Scores are saved after every fold."""
     labels = y_train.argmax(axis=1)  # StratifiedKFold needs integer labels
     folds = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=SEED)
@@ -212,7 +188,9 @@ def cross_validate_keras(build_fn, name, X_train, y_train, epochs, batch_size, r
             shuffle=True,
             validation_data=(X_train[val_idx], y_train[val_idx]),
             callbacks=[
-                keras.callbacks.CSVLogger(os.path.join(output_dir, f"{name}_cv_{run_id}_fold{fold}.csv"))
+                keras.callbacks.CSVLogger(
+                    os.path.join(output_dir, f"{name}_cv_{run_id}_fold{fold}.csv")
+                )
             ],
             verbose=2,
         )
@@ -242,7 +220,9 @@ def cross_validate_keras(build_fn, name, X_train, y_train, epochs, batch_size, r
     return df
 
 
-def fit_test(model, name, X_test, y_test, training_minutes, batch_size, run_id, output_dir):
+def fit_test(
+    model, name, X_test, y_test, training_minutes, batch_size, run_id, output_dir
+):
     """Score a final model on the 8,000 test images and save the result."""
     loss, accuracy = model.evaluate(X_test, y_test, batch_size=batch_size)
     pd.DataFrame(
